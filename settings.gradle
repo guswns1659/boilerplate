@@ -2,3 +2,4 @@ rootProject.name = 'boilerplate'
 
 include('shared')
 include('mvc')
+include('webflux')

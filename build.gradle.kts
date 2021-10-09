@@ -28,22 +28,7 @@ allprojects {
     }
 }
 
-configure(subprojects.filter { it.name !in listOf<String>("shared") }) {
-
-    apply(plugin = "java")
-    apply(plugin = "org.springframework.boot")
-    apply(plugin = "io.spring.dependency-management")
-
-    java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    dependencyManagement {
-        imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:2020.0.2")
-        }
-    }
+configure(subprojects.filter { it.name == "webflux" }) {
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -58,8 +43,25 @@ configure(subprojects.filter { it.name !in listOf<String>("shared") }) {
         testImplementation("io.projectreactor.tools:blockhound-junit-platform:1.0.6.RELEASE")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher") // 테스트 시 사용하려면 이 의존성 필요
 
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.projectreactor:reactor-test")
+    }
+}
+
+configure(subprojects.filter { it.name !in listOf<String>("shared") }) {
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:2020.0.2")
+        }
+    }
+
+    dependencies {
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 
     tasks {
