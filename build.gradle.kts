@@ -47,6 +47,13 @@ configure(subprojects.filter { it.name == "webflux" }) {
     }
 }
 
+configure(subprojects.filter { it.name == "mvc" }) {
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.apache.httpcomponents:httpclient")
+    }
+}
+
 configure(subprojects.filter { it.name !in listOf<String>("shared") }) {
 
     java {
