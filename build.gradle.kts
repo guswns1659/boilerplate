@@ -6,8 +6,21 @@ plugins {
 }
 
 allprojects {
+    apply(plugin = "java")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+
     repositories {
         mavenCentral()
+    }
+
+    dependencies {
+        // lombok
+        implementation("org.projectlombok:lombok")
+        annotationProcessor("org.projectlombok:lombok")
+
+        compileOnly("org.springframework.boot:spring-boot-devtools")
+
     }
 
     ext {
@@ -15,7 +28,8 @@ allprojects {
     }
 }
 
-configure(subprojects.filter { it.name !in listOf { "shared" } }) {
+configure(subprojects.filter { it.name !in listOf<String>("shared") }) {
+
     apply(plugin = "java")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
@@ -39,19 +53,13 @@ configure(subprojects.filter { it.name !in listOf { "shared" } }) {
         implementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
         implementation("org.mongodb:mongodb-driver-sync") // tranditional mongo DB driver
 
-        // lombok
-        implementation("org.projectlombok:lombok")
-        annotationProcessor("org.projectlombok:lombok")
-
         // blockHound
         implementation("io.projectreactor.tools:blockhound:1.0.3.RELEASE")
         testImplementation("io.projectreactor.tools:blockhound-junit-platform:1.0.6.RELEASE")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher") // 테스트 시 사용하려면 이 의존성 필요
 
-        compileOnly("org.springframework.boot:spring-boot-devtools")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.projectreactor:reactor-test")
-
     }
 
     tasks {
