@@ -19,6 +19,9 @@ allprojects {
         implementation("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
 
+        // h2
+        implementation("com.h2database:h2")
+
         compileOnly("org.springframework.boot:spring-boot-devtools")
 
     }
@@ -51,6 +54,7 @@ configure(subprojects.filter { it.name == "mvc" }) {
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.apache.httpcomponents:httpclient")
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     }
 }
 
