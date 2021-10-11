@@ -1,4 +1,4 @@
-package com.titanic.mvc;
+package com.titanic.mvc.resttemplate;
 
 import java.util.concurrent.TimeUnit;
 import org.apache.http.client.config.RequestConfig;
