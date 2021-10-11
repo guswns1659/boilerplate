@@ -5,6 +5,9 @@ spring:
     username: sa
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+# Remove comments if want to use schema.sql
+#    hibernate:
+#      ddl-auto: none
   h2:
     console:
       enabled: true # default = false
