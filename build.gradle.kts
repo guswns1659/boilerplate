@@ -55,6 +55,7 @@ configure(subprojects.filter { it.name == "mvc" }) {
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.apache.httpcomponents:httpclient")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.amqp:spring-rabbit:1.6.2.RELEASE")
     }
 }
 
