@@ -1,4 +1,4 @@
-package com.titanic.mvc.batch;
+package com.titanic.batch;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
