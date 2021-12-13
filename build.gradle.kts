@@ -55,6 +55,7 @@ configure(subprojects.filter { it.name == "mvc" }) {
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.apache.httpcomponents:httpclient")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.amqp:spring-rabbit")
     }
 }
 
@@ -72,6 +73,7 @@ configure(subprojects.filter { it.name !in listOf<String>("shared") }) {
     }
 
     dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-batch")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 
