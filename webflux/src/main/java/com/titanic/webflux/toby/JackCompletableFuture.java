@@ -19,10 +19,12 @@ public class JackCompletableFuture {
                 log.info("runAsync");
                 return 1;
             })
-            .thenApply(s-> {
-                log.info("thenApply = {}", s);
-                return s + 1;
+            // flatmap의 느낌.
+            .thenCompose(s-> {
+                log.info("thenCompose = {}", s);
+                return CompletableFuture.completedFuture(s + 1);
             })
+            // map의 느낌
             .thenApply(s2-> {
                 log.info("thenApply = {}", s2);
                 return s2 * 3;
